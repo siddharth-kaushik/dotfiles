@@ -1,0 +1,30 @@
+[user]
+	name = Siddharth Kaushik
+	email = 20169129+siddharth-kaushik@users.noreply.github.com
+
+[core]
+	# Ignore files that are not meant to be tracked
+	editor = code --wait
+	excludesfile = /Users/sid/.gitignore_global
+
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+	path =
+
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait \"$MERGED\"
+	trustExitCode = true
+
+# Handle large files
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+# Standar commit message, by Sourcetree
+[commit]
+	template = /Users/sid/.stCommitMsg
