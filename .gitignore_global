@@ -1,5 +1,26 @@
-*~
-.DS_Store
-.cache/
 
-node_modeules/
+# Mac
+.DS_Store
+
+# Local history
+.history
+
+# VSCode or IDEs
+.cache/
+.idea/
+.vscode/
+
+# Text editors
+*~
+
+# Node
+node_modules/
+
+# NPM
+npm-debug.log
+
+# Yarn
+yarn-error.log
+
+# Eslint
+.eslintcache

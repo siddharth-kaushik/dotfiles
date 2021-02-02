@@ -1,4 +1,5 @@
 [user]
+	# Details that ends up in author/ committer fields
 	name = Siddharth Kaushik
 	email = 20169129+siddharth-kaushik@users.noreply.github.com
 
@@ -7,24 +8,38 @@
 	editor = code --wait
 	excludesfile = /Users/sid/.gitignore_global
 
+[push]
+	# Push the current branch to update a branch with the same name on the receiving end
+  default = current
+	# Make pushes to be GPG signed if the server supports it
+	gpgSign = if-asked
+
 [diff]
 	tool = vscode
+
 [difftool "vscode"]
 	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
-	path =
 
 [merge]
 	tool = vscode
+
 [mergetool "vscode"]
 	cmd = code --wait \"$MERGED\"
 	trustExitCode = true
 
 # Handle large files
 [filter "lfs"]
+	# Use this command to convert blob content to worktree file on checkout
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+	# Use this command to convert worktree file content to a blob upon checkin
 	clean = git-lfs clean -- %f
-# Standar commit message, by Sourcetree
+
 [commit]
+	# Use .stCommitMsg as the template for new commit messages
 	template = /Users/sid/.stCommitMsg
+
+[init]
+	# Override default branch name when initializing or cloning a new repo
+	defaultBranch = main

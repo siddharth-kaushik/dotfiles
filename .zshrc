@@ -1,7 +1,5 @@
-## Thanks to Caroline Buckey, Felipe Contreras, Kent C. Dodds ##
-
-# -> ZSH completion
-autoload -U compinit && compinit
+# -> Active the ZSH completion
+autoload -Uz compinit && compinit
 zmodload -i zsh/complist
 
 # -> History size
@@ -137,6 +135,10 @@ alias gf="git fetch";
 alias gpull="git pull";
 alias gpush="git push";
 alias gs="git status";
+alias co="git checkout";
+alias cb="git checkout -b";
+alias rh="git reset --hard HEAD";
+alias unstage="git reset --soft HEAD";
 
 function extract {
   if [ ! -d "./all" ]
@@ -320,6 +322,7 @@ alias java8="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bi
 # -> ZSH completion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Deno completions
