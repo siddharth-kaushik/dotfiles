@@ -7,6 +7,27 @@
 	# Ignore files that are not meant to be tracked
 	editor = code --wait
 	excludesfile = /Users/sid/.gitignore_global
+	# Speed up commands involving untracked files such as `git status`.
+	untrackedCache = true
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
 
 [push]
 	# Push the current branch to update a branch with the same name on the receiving end
@@ -16,16 +37,23 @@
 
 [diff]
 	tool = vscode
+	# Detect renames as well as copies
+	renames = copies
 
 [difftool "vscode"]
 	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
 
 [merge]
 	tool = vscode
+	log = true
 
 [mergetool "vscode"]
 	cmd = code --wait \"$MERGED\"
 	trustExitCode = true
+
+[help]
+	# Automatically correct an execute mistypes commands
+	autocorrect = 1
 
 # Handle large files
 [filter "lfs"]
@@ -43,3 +71,9 @@
 [init]
 	# Override default branch name when initializing or cloning a new repo
 	defaultBranch = main
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

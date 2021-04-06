@@ -2,9 +2,16 @@
 autoload -Uz compinit && compinit
 zmodload -i zsh/complist
 
-# -> History size
-HISTSIZE=5000
-HISTFILESIZE=10000
+# Allow substitution in prompt
+setopt promptsubst
+
+# Make VSCode the default editor
+export EDITOR="c"
+
+# -> Increase history size to 32³, default is 500
+HISTSIZE='32768';
+HISTFILESIZE="${HISTSIZE}";
+HISTCONTROL="ignoreboth"
 
 # Toggle colors
 export CLICOLOR=1;
@@ -50,10 +57,6 @@ alias e=randEmoji
 
 # Map Python to Python3
 alias python='python3'
-
-# Jest & Cypress
-alias jestify="PS1=\"🃏\n$ \"";
-alias cypressify="PS1=\"🌀\n$ \"";
 
 
 # VSCode & VSCode Insiders
@@ -108,17 +111,22 @@ alias tslint-react="npm i -D tslint tslint-react tslint-config-prettier";
 # NPM
 alias na="npm i";
 alias nad="npm i -D";
+alias nag="npm i -g";
 alias nr="npm uninstall";
-alias nu="npm upgrade"
+alias nu="npm upgrade";
+alias nl="npm list -g --depth=0";
 alias nf="rm -rf node_modules && npm i && say \"NPM flush complete.\"";
+alias ncu="ncu --color"
 
 # Yarn
 alias ya="yarn add";
 alias yad="yarn add -D";
+alias yag="yarn global add";
 alias yr="yarn remove";
 alias ys="yarn serve";
 alias yb="yarn build";
-alias yu="yarn upgrade-interactive --latest"
+alias yu="yarn upgrade-interactive --latest";
+alias yl="yarn global list";
 alias yf="rm -rf node_modules && yarn && say \"Yarn flush complete.\"";
 
 # Gulp
@@ -135,8 +143,6 @@ alias gf="git fetch";
 alias gpull="git pull";
 alias gpush="git push";
 alias gs="git status";
-alias co="git checkout";
-alias cb="git checkout -b";
 alias rh="git reset --hard HEAD";
 alias unstage="git reset --soft HEAD";
 
@@ -165,9 +171,17 @@ initMac() {
   # Core
   say "installing Homebrew packages";
   brew install \
+    composer \
+    deno \
+    dnsmasq \
+    nginx \
+    gh \
     git \
     mpv \
+    serve \
+    tree \
     wget \
+    wp-cli \
     yarn;
 
   # CLIs
@@ -182,14 +196,13 @@ initMac() {
     alfred \
     android-file-transfer \
     android-studio \
-    app-cleaner \
     bitbar \
     coteditor \
     docker \
     dropbox \
     duet \
     figma \
-    firefox \
+    firefox-developer-edition \
     flux \
     github \
     googleappengine \
@@ -199,7 +212,6 @@ initMac() {
     itsycal \
     imageoptim \
     jetbrains-toolbox \
-    krita \
     keybase \
     microsoft-edge \
     microsoft-teams \
@@ -212,20 +224,17 @@ initMac() {
     postico \
     postman \
     qbittorrent \
-    rectangle \
-    sequel-ace \
+    sequel-pro \
     slack \
     sketchbook \
     skype \
-    skype-for-business \
     sourcetree \
+    spectacle \
     spotify \
     telegram \
-    thunderbird \
     the-unarchiver \
     visual-studio-code \
     vlc \
-    webponize \
     whatsapp \
     zeplin;
 
@@ -243,28 +252,34 @@ initMac() {
   nvm install node --lts;
 
 
-    # Show status bar and path bar in Finder
-    say "turning on the status bar and path bar in Finder";
-    defaults write com.apple.finder ShowPathbar -bool true;
-    defaults write com.apple.finder ShowStatusBar -bool true;
+  # Show status bar and path bar in Finder
+  say "turning on the status bar and path bar in Finder";
+  defaults write com.apple.finder ShowPathbar -bool true;
+  defaults write com.apple.finder ShowStatusBar -bool true;
 
-    say "install following apps yourself from the Apple app store";
-    printf "
-      Apps from Creative Cloud \n
-      JetBrains apps: PyCharm, PhpStorm, GoLand, IntelliJ \n
-      Keynote \n
-      Lynda.com \n
-      Numbers \n
-      Pages \n
-      Reality Converter \n
-      Svgsus \n
-      Xcode \n
-    ";
+  say "install following apps manually";
+  printf "
+    Apps from Creative Cloud \n
+    JetBrains apps: PyCharm, PhpStorm, GoLand, IntelliJ \n
+    Pages, Numbers, Keynote \n
+    Lynda.com \n
+    Svgsus \n
+    Webponize \n
+    Xcode \n
+  ";
+}
+
+linkDotfiles() {
+  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+  ln -s ~/.dotfiles/.gitignore_global ~/.gitignore_global
+  ln -s ~/.dotfiles/.stCommitMsg ~/.stCommitMsg
+  ln -s ~/.dotfiles/..zshrc ~/..zshrc
+  ln -s ~/.dotfiles/git-prompt.sh ~/git-prompt.sh
 }
 
 
 # Configure VS Code as default editor tool for git
-vscodeForGit() {
+setVSCodeForGit() {
   # default editor tool
   git config --global core.editor "code --wait"
 
@@ -316,14 +331,14 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Java
-alias java="/Library/Java/JavaVirtualMachines/jdk-13.jdk/Contents/Home/bin/java"
-alias java8="/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin/java"
+alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
 
 # -> ZSH completion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # Deno completions
 fpath=(~/.zsh $fpath)
