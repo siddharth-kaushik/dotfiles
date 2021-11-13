@@ -73,6 +73,7 @@ alias cl="clear";
 alias ll="ls -1a";
 alias ..="cd ../";
 alias s="cd ~/Sites";
+alias x="cd ~/Sites/xwp";
 
 # Show/ hide files or folders in finder
 alias show="chflags nohidden"
@@ -138,6 +139,8 @@ alias eslint-prettier="yad prettier eslint-config-prettier eslint-plugin-prettie
 # Git
 function gc { git commit -m $@; }
 alias ga="git add .";
+alias gb="git checkout -b"
+alias gbd="git branch -d"
 alias gd="git diff";
 alias gf="git fetch";
 alias gpull="git pull";
@@ -347,3 +350,5 @@ compinit -u
 
 # Deno cache alias
 alias dc="cd /Users/sid/Library/Caches/deno && ll"
+export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/ffmpeg@2.8/lib/pkgconfig"
