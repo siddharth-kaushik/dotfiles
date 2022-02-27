@@ -58,8 +58,7 @@ alias python='python3'
 # VSCode Insiders
 alias ci="code-insiders";
 
-# Open/Source ZSH profiles
-alias cb="ci ~/.zshrc"
+# Source ZSH profiles
 alias sb="source ~/.zshrc";
 
 # Directory Traversal/ Listing
@@ -69,28 +68,16 @@ alias ll="ls -1a";
 alias ..="cd ../";
 alias s="cd ~/Sites";
 
-# Show/ hide files or folders in finder
-alias show="chflags nohidden"
-alias hide="chflags hidden"
-
-# Show/ hide status bar for finder
-alias show-status-bar="defaults write com.apple.finder ShowStatusBar -bool true"
-alias hide-status-bar="defaults write com.apple.finder ShowStatusBar -bool false"
-
-# SHow/ hide path bar in finder
-alias show-path-bar="defaults write com.apple.finder ShowPathbar -bool true"
-alias hide-path-bar="defaults write com.apple.finder ShowPathbar -bool false"
-
 # Find and remove all 'node_modules' folder in a directory
 alias farm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +";
 
-# Delete .DS_Store files
+# Delete .DS_Store files recursively in a folder
 alias dds="find . -name '.DS_Store' -type f -delete";
 
 # Flush DNS
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
 
-# Open Chrome with disabled CORS
+# Open Chrome with CORS disabled
 alias chrome-cors="open -a Google\ Chrome --args --disable-web-security --allow-file-access-from-files";
 
 # React
@@ -103,7 +90,7 @@ alias chrome-cors="open -a Google\ Chrome --args --disable-web-security --allow-
 alias eslint-react="npm i -D eslint babel-eslint eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-jsx-a11y";
 alias tslint-react="npm i -D tslint tslint-react tslint-config-prettier";
 
-# Wordpress
+# WordPress
 alias wp-cf="npx wp-env run cli \"wp cache flush\"";
 alias wp-rf="npx wp-env run cli \"wp rewrite flush\"";
 
@@ -131,7 +118,7 @@ alias yf="rm -rf node_modules && yarn && say \"Yarn flush complete.\"";
 # Gulp
 alias gulpi="yad gulp-ruby-sass gulp-autoprefixer gulp-cssnano gulp-jshint gulp-sourcemaps gulp-concat gulp-uglify gulp-imagemin gulp-webserver gulp-rename gulp-livereload gulp-cache del";
 
-# Eslint
+# ESLint
 alias eslint-prettier="yad prettier eslint-config-prettier eslint-plugin-prettier";
 
 # Git
@@ -154,6 +141,11 @@ alias grh="git reset --hard HEAD";
 alias grl="git branch -D `git branch --merged | grep -v \* | xargs`";
 alias gs="git status";
 
+# We create an alias config which we will use instead of the regular git when we want to interact with our configuration repository.
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+
+
+# -> Functions
 function extract {
   if [ ! -d "./all" ]
   then
@@ -168,7 +160,6 @@ function extract {
     done;
 }
 
-# -> Custom Functions
 # Install Mac apps using Homebrew
 function initMac() {
   # Brew
@@ -260,7 +251,7 @@ function initMac() {
 
 
   # Show status bar and path bar in Finder
-  say "turning on the status bar and path bar in Finder";
+  say "toggling on the status bar and path bar in Finder";
   defaults write com.apple.finder ShowPathbar -bool true;
   defaults write com.apple.finder ShowStatusBar -bool true;
 
