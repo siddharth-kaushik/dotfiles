@@ -5,9 +5,6 @@ zmodload -i zsh/complist
 # Allow substitution in prompt
 setopt promptsubst
 
-# Make VSCode the default editor
-export EDITOR="c"
-
 # -> Increase history size to 32³, default is 500
 HISTSIZE='32768';
 HISTFILESIZE="${HISTSIZE}";
@@ -58,9 +55,7 @@ alias e=randEmoji
 # Map Python to Python3
 alias python='python3'
 
-
-# VSCode & VSCode Insiders
-alias c="code"
+# VSCode Insiders
 alias ci="code-insiders";
 
 # Open/Source ZSH profiles
@@ -73,7 +68,6 @@ alias cl="clear";
 alias ll="ls -1a";
 alias ..="cd ../";
 alias s="cd ~/Sites";
-alias x="cd ~/Sites/xwp";
 
 # Show/ hide files or folders in finder
 alias show="chflags nohidden"
@@ -109,23 +103,27 @@ alias chrome-cors="open -a Google\ Chrome --args --disable-web-security --allow-
 alias eslint-react="npm i -D eslint babel-eslint eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-jsx-a11y";
 alias tslint-react="npm i -D tslint tslint-react tslint-config-prettier";
 
+# Wordpress
+alias wp-cf="npx wp-env run cli \"wp cache flush\"";
+alias wp-rf="npx wp-env run cli \"wp rewrite flush\"";
+
 # NPM
 alias na="npm i";
 alias nad="npm i -D";
 alias nag="npm i -g";
 alias nr="npm uninstall";
+alias nrb="npm run build";
+alias nrl="npm run lint";
 alias nu="npm upgrade";
 alias nl="npm list -g --depth=0";
 alias nf="rm -rf node_modules && npm i && say \"NPM flush complete.\"";
-alias ncu="ncu --color"
 
 # Yarn
+alias y="yarn";
 alias ya="yarn add";
 alias yad="yarn add -D";
 alias yag="yarn global add";
 alias yr="yarn remove";
-alias ys="yarn serve";
-alias yb="yarn build";
 alias yu="yarn upgrade-interactive --latest";
 alias yl="yarn global list";
 alias yf="rm -rf node_modules && yarn && say \"Yarn flush complete.\"";
@@ -137,17 +135,24 @@ alias gulpi="yad gulp-ruby-sass gulp-autoprefixer gulp-cssnano gulp-jshint gulp-
 alias eslint-prettier="yad prettier eslint-config-prettier eslint-plugin-prettier";
 
 # Git
-function gc { git commit -m $@; }
 alias ga="git add .";
-alias gb="git checkout -b"
-alias gbd="git branch -d"
+alias gb="git branch";
+alias gbd="git branch -D";
+alias gc="git checkout";
+alias gcb="git checkout -b";
+alias gcm="git checkout main";
+alias gco="git commit -m";
 alias gd="git diff";
 alias gf="git fetch";
-alias gpull="git pull";
-alias gpush="git push";
+alias gl="git log --oneline";
+alias gm="git merge";
+alias gma="git merge --abort";
+alias gp="git pull";
+alias gpo="git push origin";
+alias gr="git reset HEAD~";
+alias grh="git reset --hard HEAD";
+alias grl="git branch -D `git branch --merged | grep -v \* | xargs`";
 alias gs="git status";
-alias rh="git reset --hard HEAD";
-alias unstage="git reset --soft HEAD";
 
 function extract {
   if [ ! -d "./all" ]
@@ -163,10 +168,9 @@ function extract {
     done;
 }
 
-
 # -> Custom Functions
 # Install Mac apps using Homebrew
-initMac() {
+function initMac() {
   # Brew
   say "installing Homebrew";
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";
@@ -272,17 +276,17 @@ initMac() {
   ";
 }
 
-linkDotfiles() {
+function linkDotfiles() {
   ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
   ln -s ~/.dotfiles/.gitignore_global ~/.gitignore_global
   ln -s ~/.dotfiles/.stCommitMsg ~/.stCommitMsg
-  ln -s ~/.dotfiles/..zshrc ~/..zshrc
+  ln -s ~/.dotfiles/.zshrc ~/.zshrc
   ln -s ~/.dotfiles/git-prompt.sh ~/git-prompt.sh
 }
 
 
 # Configure VS Code as default editor tool for git
-setVSCodeForGit() {
+function setVSCodeForGit() {
   # default editor tool
   git config --global core.editor "code --wait"
 
@@ -297,29 +301,13 @@ setVSCodeForGit() {
 
 
 # Remove Meta-Info of a File
-removeMeta() {
+function removeMeta() {
   xattr $@
   xattr -d com.apple.metadata:kMDItemWhereFroms $@
 }
 
-# Toggle sidecar ON/ OFF
-toggleSidecar() {
-  defaults write com.apple.sidecar.display AllowAllDevices -bool $@;
-  defaults write com.apple.sidecar.display hasShownPref -bool $@;
-
-  # Show Sidecar panel
-  defaults write com.apple.sidecar.display AllowAllDevices -bool $@;
-  defaults write com.apple.sidecar.display hasShownPref -bool $@;
-}
-
-# Toggle drop-shadows for screen captures
-toggleScreenshotShadows() {
-  defaults write com.apple.screencapture disable-shadow -bool $@;
-  killall SystemUIServer;
-}
-
-# Add spacer tile on Dock
-addSpacerTile() {
+# Add an empty spacer tile to the Dock
+function emptyDockTile() {
   defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}';
   killall Dock;
 }
@@ -330,25 +318,32 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# RUST
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Java
-alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
-
-# -> ZSH completion
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-# Deno completions
+# Deno
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit
 compinit -u
 
-# Deno cache alias
-alias dc="cd /Users/sid/Library/Caches/deno && ll"
+# ffmpeg
 export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/ffmpeg@2.8/lib/pkgconfig"
+
+# add PHP v7 to PATH for version switching
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+
+# ZSH auto-suggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+# -> Aliasing libraries
+# Java
+alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
+
+# Deno cache files
+alias dc="cd /Users/sid/Library/Caches/deno && ll"
