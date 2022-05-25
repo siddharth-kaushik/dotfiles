@@ -91,9 +91,10 @@ alias chrome-cors="open -a Google\ Chrome --args --disable-web-security --allow-
 alias eslint-react="npm i -D eslint babel-eslint eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-jsx-a11y";
 alias tslint-react="npm i -D tslint tslint-react tslint-config-prettier";
 
-# WordPress
-alias wp-cf="npx wp-env run cli \"wp cache flush\"";
-alias wp-rf="npx wp-env run cli \"wp rewrite flush\"";
+# WordPress and PHP
+alias phpf="rm -rf vendor/ composer.lock && composer i"
+alias wpcf="npx wp-env run cli \"wp cache flush\"";
+alias wprf="npx wp-env run cli \"wp rewrite flush\"";
 
 # NPM
 alias na="npm i";
@@ -104,7 +105,7 @@ alias nrb="npm run build";
 alias nrl="npm run lint";
 alias nu="npm upgrade";
 alias nl="npm list -g --depth=0";
-alias nf="rm -rf node_modules && npm i && say \"NPM flush complete.\"";
+alias nf="rm -rf node_modules/ package-lock.json && npm i && say \"NPM flush complete.\"";
 
 # Yarn
 alias y="yarn";
@@ -114,7 +115,7 @@ alias yag="yarn global add";
 alias yr="yarn remove";
 alias yu="yarn upgrade-interactive --latest";
 alias yl="yarn global list";
-alias yf="rm -rf node_modules && yarn && say \"Yarn flush complete.\"";
+alias yf="rm -rf node_modules/ yarn.lock && yarn && say \"Yarn flush complete.\"";
 
 # Gulp
 alias gulpi="yad gulp-ruby-sass gulp-autoprefixer gulp-cssnano gulp-jshint gulp-sourcemaps gulp-concat gulp-uglify gulp-imagemin gulp-webserver gulp-rename gulp-livereload gulp-cache del";
@@ -129,7 +130,7 @@ alias gbd="git branch -D";
 alias gc="git checkout";
 alias gcb="git checkout -b";
 alias gcm="git checkout main";
-alias gco="git commit -m";
+alias gcom="git commit -m";
 alias gd="git diff";
 alias gf="git fetch";
 alias gl="git log --oneline";
@@ -141,9 +142,8 @@ alias gr="git reset HEAD~";
 alias grh="git reset --hard HEAD";
 alias grl="git branch -D `git branch --merged | grep -v \* | xargs`";
 alias gs="git status";
-
-# We create an alias config which we will use instead of the regular git when we want to interact with our configuration repository.
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+alias gsp="git stash pop";
+alias gsl="git stash list";
 
 
 # -> Functions
