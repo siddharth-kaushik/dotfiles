@@ -67,6 +67,7 @@ alias cl="clear";
 alias ll="ls -1a";
 alias ..="cd ../";
 alias s="cd $HOME/Sites";
+alias dot="cd $DOTFILES";
 
 # Find and remove all 'node_modules' folder in a directory
 alias farm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +";
@@ -304,6 +305,9 @@ function emptyDockTile() {
 }
 
 # -> Path Alterations
+# Path to DotFiles
+export DOTFILES=$HOME/.dotfiles
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
