@@ -348,3 +348,5 @@ alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
 # Load globalnode libraries
 export PATH="$HOME/.nvm/versions/node/${nodeVersion}/bin:$PATH"
 
+# Use project specific Node binaries before global ones
+export PATH="node_modules/bin:vendor/bin:$PATH"
