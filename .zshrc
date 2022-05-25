@@ -345,6 +345,9 @@ source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Java
 alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
 
+# Load composer tools
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 # Load globalnode libraries
 export PATH="$HOME/.nvm/versions/node/${nodeVersion}/bin:$PATH"
 
