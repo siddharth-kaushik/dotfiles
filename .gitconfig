@@ -71,9 +71,9 @@
 [init]
 	# Override default branch name when initializing or cloning a new repo
 	defaultBranch = main
-[difftool "sourcetree"]
+[difftool "vscode"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	path =
+[mergetool "vscode"]
+	cmd = code \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
