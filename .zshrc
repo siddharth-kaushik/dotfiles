@@ -41,7 +41,7 @@ randEmoji
 # git-prompt.sh -> add git related status to command prompt
 # GIT_PS1_SHOWDIRTYSTATE -> shows unstaged (*) and staged (+) changes to the next of branch name
 # GIT_PS1_SHOWCOLORHINTS -> Colored hint about the current dirty state
-source ~/git-prompt.sh
+source $HOME/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWCOLORHINTS=1
 setopt PROMPT_SUBST
@@ -59,14 +59,14 @@ alias python='python3'
 alias ci="code-insiders";
 
 # Source ZSH profiles
-alias sb="source ~/.zshrc";
+alias sb="source $HOME/.zshrc";
 
 # Directory Traversal/ Listing
-alias ~="cd ~"
+alias ~="cd $HOME"
 alias cl="clear";
 alias ll="ls -1a";
 alias ..="cd ../";
-alias s="cd ~/Sites";
+alias s="cd $HOME/Sites";
 
 # Find and remove all 'node_modules' folder in a directory
 alias farm="find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +";
@@ -267,12 +267,12 @@ function initMac() {
   ";
 }
 
-function linkDotfiles() {
-  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-  ln -s ~/.dotfiles/.gitignore_global ~/.gitignore_global
-  ln -s ~/.dotfiles/.stCommitMsg ~/.stCommitMsg
-  ln -s ~/.dotfiles/.zshrc ~/.zshrc
-  ln -s ~/.dotfiles/git-prompt.sh ~/git-prompt.sh
+function symLink() {
+  ln -s $HOME/.dotfiles/.gitconfig $HOME/.gitconfig
+  ln -s $HOME/.dotfiles/.gitignore_global $HOME/.gitignore_global
+  ln -s $HOME/.dotfiles/.stCommitMsg $HOME/.stCommitMsg
+  ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+  ln -s $HOME/.dotfiles/git-prompt.sh $HOME/git-prompt.sh
 }
 
 
@@ -317,7 +317,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Deno
-fpath=(~/.zsh $fpath)
+fpath=($HOME/.zsh $fpath)
 autoload -Uz compinit
 compinit -u
 
@@ -329,7 +329,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/ffmpeg@2.8/lib/pkgconfig"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 
 # ZSH auto-suggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 # -> Aliasing libraries
