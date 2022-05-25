@@ -304,6 +304,11 @@ function emptyDockTile() {
   killall Dock;
 }
 
+# Get current node version
+function nodeVersion() {
+  node -v
+}
+
 # -> Path Alterations
 # Path to DotFiles
 export DOTFILES=$HOME/.dotfiles
@@ -340,5 +345,6 @@ source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Java
 alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
 
-# Deno cache files
-alias dc="cd /Users/sid/Library/Caches/deno && ll"
+# Load globalnode libraries
+export PATH="$HOME/.nvm/versions/node/${nodeVersion}/bin:$PATH"
+
