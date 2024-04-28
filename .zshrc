@@ -1,4 +1,4 @@
-# -> Active the ZSH completion
+# -> Initialize and configure zsh completion
 autoload -Uz compinit && compinit
 zmodload -i zsh/complist
 
@@ -55,17 +55,19 @@ alias e=randEmoji
 # Map Python to Python3
 alias python='python3'
 
-# VSCode Insiders
+# VSCode
+alias c="code";
 alias ci="code-insiders";
 
-# Source ZSH profiles
+# Refresh terminla with updates
 alias sb="source $HOME/.zshrc";
 
 # Directory Traversal/ Listing
-alias ~="cd $HOME"
 alias cl="clear";
 alias ll="ls -1a";
 alias ..="cd ../";
+alias ~="cd $HOME";
+alias de="cd $HOME/Desktop";
 alias s="cd $HOME/Sites";
 alias dot="cd $DOTFILES";
 
@@ -81,31 +83,21 @@ alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder";
 # Open Chrome with CORS disabled
 alias chrome-cors="open -a Google\ Chrome --args --disable-web-security --allow-file-access-from-files";
 
-# React
-# eslint                  -> linter for Javascript and Typescript
-# babel-eslint            -> transpiler for eslint, eslint doesn't understand React/ JSX very well
-# eslint-config-prettier  -> makes eslint work with Prettier
-# eslint-plugin-react     -> helps implement React rules
-# eslint-plugin-import    -> helps implement some good habits when inporting/ exporting stuff
-# eslint-plugin-jsx-a11y  -> helps implement good accessibility habits with React/ JSX
-alias eslint-react="npm i -D eslint babel-eslint eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-jsx-a11y";
-alias tslint-react="npm i -D tslint tslint-react tslint-config-prettier";
-
 # WordPress and PHP
 alias phpf="rm -rf vendor/ composer.lock && composer i"
 alias wpcf="npx wp-env run cli \"wp cache flush\"";
 alias wprf="npx wp-env run cli \"wp rewrite flush\"";
 
 # NPM
-alias na="npm i";
 alias nad="npm i -D";
 alias nag="npm i -g";
+alias ni="npm i";
 alias nr="npm uninstall";
 alias nrb="npm run build";
 alias nrl="npm run lint";
 alias nu="npm upgrade";
 alias nl="npm list -g --depth=0";
-alias nf="rm -rf node_modules/ package-lock.json && npm i && say \"NPM flush complete.\"";
+alias nf="rm -rf node_modules/ package-lock.json && npm i";
 
 # Yarn
 alias y="yarn";
@@ -115,13 +107,11 @@ alias yag="yarn global add";
 alias yr="yarn remove";
 alias yu="yarn upgrade-interactive --latest";
 alias yl="yarn global list";
-alias yf="rm -rf node_modules/ yarn.lock && yarn && say \"Yarn flush complete.\"";
+alias yf="rm -rf node_modules/ yarn.lock && yarn";
 
 # Gulp
 alias gulpi="yad gulp-ruby-sass gulp-autoprefixer gulp-cssnano gulp-jshint gulp-sourcemaps gulp-concat gulp-uglify gulp-imagemin gulp-webserver gulp-rename gulp-livereload gulp-cache del";
 
-# ESLint
-alias eslint-prettier="yad prettier eslint-config-prettier eslint-plugin-prettier";
 
 # Git
 alias ga="git add .";
@@ -130,37 +120,16 @@ alias gbd="git branch -D";
 alias gc="git checkout";
 alias gcb="git checkout -b";
 alias gcm="git checkout main";
-alias gcom="git commit -m";
-alias gd="git diff";
 alias gf="git fetch";
 alias gl="git log --oneline";
-alias gm="git merge";
-alias gma="git merge --abort";
 alias gp="git pull";
 alias gpo="git push origin";
 alias gr="git reset HEAD~";
 alias grh="git reset --hard HEAD";
-alias grl="git branch -D `git branch --merged | grep -v \* | xargs`";
 alias gs="git status";
-alias gsp="git stash pop";
-alias gsl="git stash list";
 
 
 # -> Functions
-function extract {
-  if [ ! -d "./all" ]
-  then
-    mkdir all
-  fi
-  find . -name $@ | while
-    IFS= read -r item;
-    do
-      folderName=${item%/*};
-      itemName=${item##*/};
-      mv ${item} ./all/${folderName##*/}-${itemName}
-    done;
-}
-
 # Install Mac apps using Homebrew
 function initMac() {
   # Brew
@@ -318,32 +287,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-# Deno
-fpath=($HOME/.zsh $fpath)
-autoload -Uz compinit
-compinit -u
-
-# ffmpeg
-export PATH="/usr/local/opt/ffmpeg@2.8/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/ffmpeg@2.8/lib/pkgconfig"
-
 # add PHP v7 to PATH for version switching
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-
-# ZSH auto-suggestions
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
-# -> Aliasing libraries
-# Java
-alias java="/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home/bin/java"
 
 # Load composer tools
 export PATH="$HOME/.composer/vendor/bin:$PATH"
