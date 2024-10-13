@@ -303,5 +303,14 @@ export PATH="$HOME/.nvm/versions/node/${nodeVersion}/bin:$PATH"
 # Use project specific Node binaries before global ones
 export PATH="node_modules/bin:vendor/bin:$PATH"
 
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/sidbits/Library/Application Support/Herd/config/php/83/"
+
+
+# Herd injected PHP binary.
+export PATH="/Users/sidbits/Library/Application Support/Herd/bin/":$PATH
+
+
 # Load Angular CLI autocompletion.
 source <(ng completion script)
