@@ -302,3 +302,6 @@ export PATH="$HOME/.nvm/versions/node/${nodeVersion}/bin:$PATH"
 
 # Use project specific Node binaries before global ones
 export PATH="node_modules/bin:vendor/bin:$PATH"
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
