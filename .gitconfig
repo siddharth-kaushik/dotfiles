@@ -5,7 +5,7 @@
 
 [core]
 	# Ignore files that are not meant to be tracked
-	editor = code --wait
+	editor = code-insiders --wait
 	excludesfile = /Users/sid/.gitignore_global
 	# Speed up commands involving untracked files such as `git status`.
 	untrackedCache = true
@@ -36,19 +36,19 @@
 	gpgSign = if-asked
 
 [diff]
-	tool = vscode
+	tool = default-difftool
 	# Detect renames as well as copies
 	renames = copies
 
-[difftool "vscode"]
-	cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+[difftool "default-difftool"]
+  cmd = code-insiders --wait --diff \"$LOCAL\" \"$REMOTE\"
 
 [merge]
-	tool = vscode
+	tool = "vscode"
 	log = true
 
 [mergetool "vscode"]
-	cmd = code --wait \"$MERGED\"
+	cmd = code-insiders --wait \"$MERGED\"
 	trustExitCode = true
 
 [help]
@@ -71,9 +71,3 @@
 [init]
 	# Override default branch name when initializing or cloning a new repo
 	defaultBranch = main
-[difftool "vscode"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "vscode"]
-	cmd = code \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
