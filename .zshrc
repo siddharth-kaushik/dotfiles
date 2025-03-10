@@ -1,4 +1,5 @@
 # Activate ZSH completion
+source "$HOME/git-prompt.sh"
 autoload -Uz compinit && compinit
 zmodload -i zsh/complist
 
@@ -17,10 +18,15 @@ export CLICOLOR=1
 # List of emojis for the prompt
 EMOJIS=(🐳 🌀 🦊 🐙 🦕 ⚡️ 🍀 ⛺️ 🎃 🍄 🍎 🍑 🍭)
 
+# Load vcs_info for Git prompt
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' (%b)'
+
 # Set a random emoji in the prompt
 setEmoji() {
   local emoji=${EMOJIS[$((RANDOM % ${#EMOJIS[@]} + 1))]}
-  PS1="%F{yellow}%n%f %c%F{green}\$(git rev-parse --is-inside-work-tree 2>/dev/null && __git_ps1)%f $emoji $ "
+  PS1="%{%F{yellow}%}%n%{%f%} %c%{%F{green}%}\${vcs_info_msg_0_}%{%f%} $emoji \$ "
 }
 
 # Initialize with a random emoji
