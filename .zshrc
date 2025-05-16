@@ -68,10 +68,12 @@ alias yf="rm -rf node_modules/ yarn.lock && yarn && say 'Yarn flush complete.'"
 
 # Git Aliases
 alias ga="git add ."
+alias gbd="git branch -D"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gp="git pull"
 alias gpo="git push origin"
+alias gr="git reset HEAD~"
 alias grh="git reset --hard HEAD~"
 
 # Symlink Dotfiles
