@@ -122,3 +122,11 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # Ruby Path
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/sidbits/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
