@@ -89,7 +89,7 @@ function symLink() {
 export DOTFILES=$HOME/.dotfiles
 
 # ZSH auto-suggestions
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
