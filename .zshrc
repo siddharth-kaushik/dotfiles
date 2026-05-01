@@ -103,3 +103,5 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 
 # Local secrets (untracked, see ~/.zshenv.local)
 [ -f ~/.zshenv.local ] && source ~/.zshenv.local
+
+. "$HOME/.local/bin/env"
