@@ -9,6 +9,7 @@
 	excludesfile = /Users/sid/.gitignore_global
 	# Speed up commands involving untracked files such as `git status`.
 	untrackedCache = true
+	hooksPath = /Users/sidbits/.claude/git-hooks
 
 [color]
 	ui = auto
