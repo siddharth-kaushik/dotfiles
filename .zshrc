@@ -91,15 +91,12 @@ export DOTFILES=$HOME/.dotfiles
 # ZSH auto-suggestions
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Ruby
-export GEM_HOME="$HOME/.gem"
-export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init - zsh)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-# NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # MySQL
 export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
@@ -119,6 +116,3 @@ export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 # Terraform Completion
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
-
-# Ruby Path
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
