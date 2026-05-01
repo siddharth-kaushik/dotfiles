@@ -97,22 +97,3 @@ eval "$(rbenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# MySQL
-export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/mysql@5.7/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/mysql@5.7/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql@5.7/lib/pkgconfig"
-
-# ImageMagick
-export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/imagemagick@6/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/imagemagick@6/include"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/imagemagick@6/lib/pkgconfig"
-
-# OpenSSL
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-
-# Terraform Completion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
