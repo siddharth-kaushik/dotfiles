@@ -100,3 +100,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 # Worktree shell helpers (lives in dotclaude)
 [ -f ~/.claude/shell/worktree.zsh ] && source ~/.claude/shell/worktree.zsh
+
+# Local secrets (untracked, see ~/.zshenv.local)
+[ -f ~/.zshenv.local ] && source ~/.zshenv.local
