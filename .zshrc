@@ -89,7 +89,7 @@ function symLink() {
 export DOTFILES=$HOME/.dotfiles
 
 # ZSH auto-suggestions
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -106,3 +106,14 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 
 . "$HOME/.local/bin/env"
 alias aws-login="aws sso login --sso-session slideshare"
+
+# pnpm
+export PNPM_HOME="/Users/sidbits/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Added by Antigravity
+export PATH="/Users/sidbits/.antigravity/antigravity/bin:$PATH"
