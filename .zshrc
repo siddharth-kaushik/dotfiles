@@ -105,3 +105,4 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 [ -f ~/.zshenv.local ] && source ~/.zshenv.local
 
 . "$HOME/.local/bin/env"
+alias aws-login="aws sso login --sso-session slideshare"
